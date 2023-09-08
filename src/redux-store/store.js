@@ -1,8 +1,7 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import {
   persistStore,
-  // має в подальшому знадобитись
-  // persistReducer,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -10,16 +9,14 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import exampleSlice from './example/exampleSlice';
-// має в подальшому знадобитись
-//import storage from 'redux-persist/lib/storage';
+import storage from 'redux-persist/lib/storage';
+import { authReducer } from './auth/authSlice';
 
-// це налаштування з минулого проект по авторизації
-// const authPersistConfig = {
-//   key: 'auth',
-//   storage,
-//   whitelist: ['token'],
-// };
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -31,9 +28,7 @@ const middleware = [
 
 export const store = configureStore({
   reducer: {
-    // сюди додаються slice
-    // це створена заглушка поки немаэ ще slice
-    example: exampleSlice,
+    auth: persistReducer(authPersistConfig, authReducer),
   },
   middleware,
 });
