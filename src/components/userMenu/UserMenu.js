@@ -6,7 +6,6 @@ import s from './style.module.css';
 export const UserMenu = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.auth.user);
-  console.log(user);
 
   return (
     <div className={s.userMenu__container}>

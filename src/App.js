@@ -14,6 +14,7 @@ const TopicPage = lazy(() => import('./page/TopicPage/TopicPage'));
 const LoginPage = lazy(() => import('./page/Login/Login'));
 const RegisterPage = lazy(() => import('./page/Register/RegisterPage'));
 const MainPage = lazy(() => import('./page/MainPage/MainPage'));
+const QuestionPage = lazy(() => import('./page/QestionPage/QestionPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,12 @@ export const App = () => {
             path="/topic"
             element={
               <PrivatRoute redirectTo="/login" component={<TopicPage />} />
+            }
+          />
+          <Route
+            path="/topic/question/:idTopic"
+            element={
+              <PrivatRoute redirectTo="/login" component={<QuestionPage />} />
             }
           />
           <Route
