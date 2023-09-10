@@ -37,7 +37,9 @@ const TopicPage = () => {
   return (
     <div>
       {addTaskSwitch ? (
-        <button onClick={swithAddFunc}>Add test</button>
+        <button onClick={swithAddFunc} className={style.button__delete}>
+          Add test
+        </button>
       ) : (
         <div>
           <form onSubmit={onSubmitForm} className={style.container}>
@@ -51,11 +53,11 @@ const TopicPage = () => {
               }}
               className={style.input__form}
             />
-            <button type="submit" className={style.form__button}>
+            <button type="submit" className={style.button__delete}>
               Add test
             </button>
           </form>
-          <button onClick={swithAddFunc} className={style.form__button}>
+          <button onClick={swithAddFunc} className={style.button__delete}>
             Cancel
           </button>
         </div>

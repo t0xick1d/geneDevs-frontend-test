@@ -1,3 +1,3 @@
-export const selectItem = state => state.topic.topic.items;
+export const selectItem = state => state.question.question.items;
 
-export const selectisLoading = state => state.topic.topic.isLoading;
+export const selectisLoading = state => state.question.question.isLoading;

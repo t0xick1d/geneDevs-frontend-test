@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchItem, addTopic, deleteTopic } from './operations';
+import { fetchItem, addQuestion, deleteQuestion } from './operations';
 
 const initialState = {
   question: {
@@ -23,49 +23,45 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
-const topicSlice = createSlice({
-  name: 'topic',
+const questionSlice = createSlice({
+  name: 'question',
   initialState,
   reducers: {
-    filterTopic: (state, action) => {
+    filterQuestion: (state, action) => {
       state.filter = action.payload;
     },
   },
   extraReducers: {
-    [addTopic.pending]: handlePending,
+    [addQuestion.pending]: handlePending,
     [fetchItem.pending]: handlePending,
-    [deleteTopic.pending]: handlePending,
+    [deleteQuestion.pending]: handlePending,
 
     [fetchItem.fulfilled]: handleFulfilled,
-    [addTopic.fulfilled](state, action) {
+    [addQuestion.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      state.topic.items.push({
+      state.question.items.push({
         id: action.payload.id,
         name: action.payload.name,
         number: action.payload.number,
       });
     },
-    [deleteTopic.fulfilled](state, action) {
+    [deleteQuestion.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      const index = state.topic.items.findIndex(
+      const index = state.question.items.findIndex(
         contact => contact.id === action.payload.id
       );
-      state.topic.items.splice(index, 1);
+      state.question.items.splice(index, 1);
     },
 
-    [addTopic.rejected]: handleRejected,
+    [addQuestion.rejected]: handleRejected,
     [fetchItem.rejected]: handleRejected,
-    [deleteTopic.rejected]: handleRejected,
+    [deleteQuestion.rejected]: handleRejected,
   },
 });
 
-export const {
-  fetchingInProgress,
-  fetchingSuccess,
-  fetchingError,
-  filterTopic,
-} = topicSlice.actions;
+export const { fetchingInProgress, fetchingSuccess, fetchingError, filterTopic } =
+  questionSlice.actions;
 
-export default topicSlice.reducer;
+export default questionSlice.reducer;

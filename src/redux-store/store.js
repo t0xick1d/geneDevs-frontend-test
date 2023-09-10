@@ -12,6 +12,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/authSlice';
 import topicReducer from './topic/topicSlice';
+import questionReducer from './question/questionSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -31,6 +32,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     topic: persistReducer(authPersistConfig, topicReducer),
+    question: persistReducer(authPersistConfig, questionReducer),
   },
   middleware,
 });
