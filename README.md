@@ -23,5 +23,3 @@ https://genedevs-backend-test.onrender.com
 Сторінка з питаннями 
 
 ![Image alt](https://github.com/t0xick1d/geneDevs-frontend-test/blob/main/img/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202023-09-10%20%D0%BE%2023.23.42.png)
-
-![Image alt](https://github.com/t0xick1d/geneDevs-frontend-test/blob/main/img/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202023-09-10%20%D0%BE%2023.24.00.png)
