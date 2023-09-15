@@ -8,15 +8,9 @@ import style from './style.module.css';
 
 export default function QuestionPage() {
   const [addTaskSwitch, setAddTaskSwitch] = useState(true);
-  // const item = useSelector(selectItem);
-
-  const onSubmitForm = e => {
-    e.preventDefault();
-  };
 
   return (
     <div>
-      QuestionPage
       <Link to="/topic" relative="path">
         <button className={style.button__delete}>back to Topic</button>
       </Link>
@@ -31,7 +25,7 @@ export default function QuestionPage() {
         </button>
       ) : (
         <div>
-          <QuestionForm onSubmitForm={onSubmitForm} />
+          <QuestionForm />
           <button
             onClick={() => {
               setAddTaskSwitch(!addTaskSwitch);

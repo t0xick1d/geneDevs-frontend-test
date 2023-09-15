@@ -10,6 +10,7 @@ const QuestionForm = ({ onSubmitForm }) => {
   const CreateAnswearComp = () => {
     return (
       <label>
+        Answear
         <input
           type="text"
           name="answear"
@@ -35,16 +36,20 @@ const QuestionForm = ({ onSubmitForm }) => {
 
   return (
     <form onSubmit={onSubmitForm} className={style.container}>
-      <input
-        type="text"
-        name="question"
-        required
-        value={qestion}
-        onChange={e => {
-          setQuestion(e.target.value);
-        }}
-        className={style.input__form}
-      />
+      <label>
+        Question
+        <input
+          type="text"
+          name="question"
+          required
+          value={qestion}
+          onChange={e => {
+            setQuestion(e.target.value);
+          }}
+          className={style.input__form}
+        />
+      </label>
+
       {swithAddAnwear ? (
         <button
           type="button"

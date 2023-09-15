@@ -7,7 +7,7 @@ function ItemList({ id, question, answearList = [], deleteTopic }) {
 
       {answearList.map((e, i) => {
         return (
-          <div>
+          <div key={i}>
             {i + 1}, {e.answer}
           </div>
         );

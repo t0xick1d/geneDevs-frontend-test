@@ -4,7 +4,7 @@ import style from './style.module.css';
 function ItemList({ id, topic, deleteTopic }) {
   return (
     <li key={id} className={style.item}>
-      <Link to={`question/${id}`} relative="path">
+      <Link to={`question/${id}`}>
         <div>{topic}</div>
       </Link>
       <button
