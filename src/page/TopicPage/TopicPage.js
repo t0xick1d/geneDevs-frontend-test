@@ -8,8 +8,9 @@ import style from './style.module.css';
 
 const TopicPage = () => {
   const [addTaskSwitch, setAddTaskSwitch] = useState(true);
-  const item = useSelector(selectItem);
   const [name, setName] = useState('');
+
+  const item = useSelector(selectItem);
   const dispatch = useDispatch();
 
   const onSubmitForm = e => {

@@ -4,10 +4,10 @@ import { fetchItem, addQuestion, deleteQuestion } from './operations';
 const initialState = {
   question: {
     items: [],
+    topicID: '',
     isLoading: false,
     error: null,
   },
-  filter: '',
 };
 
 const handlePending = state => {

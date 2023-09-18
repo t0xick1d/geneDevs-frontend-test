@@ -13,7 +13,7 @@ export const addQuestion = createAsyncThunk(
   'topic/addTopic',
   async (topic, thunkAPI) => {
     try {
-      const response = await axios.post(`/api/topic/`, topic);
+      const response = await axios.post(`/api/question/`, topic);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -24,7 +24,7 @@ export const deleteQuestion = createAsyncThunk(
   'topic/deleteTopic',
   async (topicId, thunkAPI) => {
     try {
-      const response = await axios.delete(`/api/topic/${topicId}`);
+      const response = await axios.delete(`/api/question/${topicId}`);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

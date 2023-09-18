@@ -17,11 +17,11 @@ export default function TopicList() {
 
   useEffect(() => {
     dispatch(fetchItem());
-  }, [dispatch, item]);
+  }, [dispatch]);
 
   return (
     <>
-      <div className={style.title}>Contacts</div>
+      <div className={style.title}>Test</div>
       <ul className={style.list}>
         {isLoading ? (
           <div className={style.title}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import QuestionForm from 'components/QuestionForm/QuestionFrom';
+import QuestionForm from 'components/QuestionForm/QuestionFormTest';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import QuestionList from 'components/QuestionList/QuestionList';

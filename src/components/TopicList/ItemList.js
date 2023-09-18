@@ -4,7 +4,7 @@ import style from './style.module.css';
 function ItemList({ id, topic, deleteTopic }) {
   return (
     <li key={id} className={style.item}>
-      <Link to={`question/${id}`}>
+      <Link to={`question/${id}`} onClick={() => {}}>
         <div>{topic}</div>
       </Link>
       <button
