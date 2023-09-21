@@ -1,34 +1,34 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage, FieldArray } from 'formik';
-import { selectItem } from 'redux-store/question/selectors';
 import { addQuestion } from 'redux-store/question/operations';
 import * as Yup from 'yup';
 
 import style from './style.module.css';
-import { useEffect } from 'react';
 
 const QuestionForm = () => {
   const dispatch = useDispatch();
+  const { idTopic } = useParams();
 
   const initialValues = {
     question: '',
+    topicId: idTopic,
     answearList: [
       {
-        answear: '',
+        answer: '',
         isRight: false,
       },
     ],
   };
-  useEffect(() => {
-    dispatch(addQuestion(initialValues));
-  }, []);
+
   const validationSchema = Yup.object({
     question: Yup.string().required('Required'),
+    topicId: Yup.string().required('Required'),
     answearList: Yup.array()
       .of(
         Yup.object().shape({
-          dayOfWeek: Yup.string(),
-          checked: Yup.boolean(),
+          answer: Yup.string(),
+          isRight: Yup.boolean(),
         })
       )
       .required('Required'),
@@ -39,8 +39,8 @@ const QuestionForm = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
-        // console.log(values);
-        // dispatch(addQuestion());
+        console.log(values);
+        dispatch(addQuestion(values));
         actions.resetForm();
       }}
     >
@@ -63,19 +63,19 @@ const QuestionForm = () => {
                     <div className="row" key={index}>
                       <div className="col">
                         <label
-                          htmlFor={`answearList.${index}.answear`}
+                          htmlFor={`answearList.${index}.answer`}
                           className={style.title}
                         >
                           Answear
                         </label>
                         <Field
-                          name={`answearList.${index}.answear`}
+                          name={`answearList.${index}.answer`}
                           placeholder="Writen answear"
                           type="text"
                           className={style.input__form}
                         />
                         <ErrorMessage
-                          name={`answearList.${index}.answear`}
+                          name={`answearList.${index}.answer`}
                           component="div"
                           className="field-error"
                         />
@@ -109,7 +109,7 @@ const QuestionForm = () => {
                   className={style.button__delete}
                   onClick={() =>
                     push({
-                      answear: '',
+                      answer: '',
                       isRight: false,
                     })
                   }

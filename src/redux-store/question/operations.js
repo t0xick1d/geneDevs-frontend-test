@@ -22,10 +22,12 @@ export const addQuestion = createAsyncThunk(
 );
 export const deleteQuestion = createAsyncThunk(
   'topic/deleteTopic',
-  async (topicId, thunkAPI) => {
+  async (questionId, thunkAPI) => {
     try {
-      const response = await axios.delete(`/api/question/${topicId}`);
-      return response.data;
+      const response = await axios.delete(`/api/question/${questionId}`);
+      if ((response.message = '"Question deleted"')) {
+        return (response.data.id = questionId);
+      }
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

@@ -2,20 +2,18 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchItem, addTopic, deleteTopic } from './operations';
 
 const initialState = {
-  topic: {
-    items: [],
-    isLoading: false,
-    error: null,
-  },
+  items: [],
+  isLoading: false,
+  error: null,
 };
 
 const handlePending = state => {
   state.isLoading = true;
 };
 const handleFulfilled = (state, action) => {
-  state.topic.isLoading = false;
-  state.topic.error = null;
-  state.topic.items = action.payload;
+  state.isLoading = false;
+  state.error = null;
+  state.items = action.payload;
 };
 const handleRejected = (state, action) => {
   state.isLoading = false;
