@@ -22,7 +22,7 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
-const topicSlice = createSlice({
+export const topicSlice = createSlice({
   name: 'topic',
   initialState,
   reducers: {
@@ -60,11 +60,7 @@ const topicSlice = createSlice({
   },
 });
 
-export const {
-  fetchingInProgress,
-  fetchingSuccess,
-  fetchingError,
-  filterTopic,
-} = topicSlice.actions;
+export const { fetchingInProgress, fetchingSuccess, fetchingError } =
+  topicSlice.actions;
 
 export default topicSlice.reducer;

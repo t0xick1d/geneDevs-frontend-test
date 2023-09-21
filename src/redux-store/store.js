@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
   persistReducer,
@@ -11,8 +11,8 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/authSlice';
-import topicReducer from './topic/topicSlice';
-import questionReducer from './question/questionSlice';
+import { topicSlice } from './topic/topicSlice';
+import { questionSlice } from './question/questionSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -20,21 +20,18 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
-const middleware = [
-  ...getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  }),
-];
-
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    topic: persistReducer(authPersistConfig, topicReducer),
-    question: persistReducer(authPersistConfig, questionReducer),
+    topic: topicSlice.reducer,
+    question: questionSlice.reducer,
   },
-  middleware,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
 export const persistor = persistStore(store);

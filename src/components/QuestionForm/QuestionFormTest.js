@@ -1,9 +1,15 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Field, Form, ErrorMessage, FieldArray } from 'formik';
+import { selectItem } from 'redux-store/question/selectors';
+import { addQuestion } from 'redux-store/question/operations';
 import * as Yup from 'yup';
 
 import style from './style.module.css';
+import { useEffect } from 'react';
 
 const QuestionForm = () => {
+  const dispatch = useDispatch();
+
   const initialValues = {
     question: '',
     answearList: [
@@ -13,6 +19,9 @@ const QuestionForm = () => {
       },
     ],
   };
+  useEffect(() => {
+    dispatch(addQuestion(initialValues));
+  }, []);
   const validationSchema = Yup.object({
     question: Yup.string().required('Required'),
     answearList: Yup.array()
@@ -30,7 +39,7 @@ const QuestionForm = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
-        console.log(values);
+        // console.log(values);
         // dispatch(addQuestion());
         actions.resetForm();
       }}

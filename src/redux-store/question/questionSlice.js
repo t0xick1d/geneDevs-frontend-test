@@ -4,14 +4,13 @@ import { fetchItem, addQuestion, deleteQuestion } from './operations';
 const initialState = {
   question: {
     items: [],
-    topicID: '',
     isLoading: false,
     error: null,
   },
 };
 
 const handlePending = state => {
-  state.isLoading = true;
+  state.question.isLoading = true;
 };
 const handleFulfilled = (state, action) => {
   state.question.isLoading = false;
@@ -23,7 +22,7 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
-const questionSlice = createSlice({
+export const questionSlice = createSlice({
   name: 'question',
   initialState,
   reducers: {
@@ -61,7 +60,7 @@ const questionSlice = createSlice({
   },
 });
 
-export const { fetchingInProgress, fetchingSuccess, fetchingError, filterTopic } =
+export const { fetchingInProgress, fetchingSuccess, fetchingError } =
   questionSlice.actions;
 
 export default questionSlice.reducer;

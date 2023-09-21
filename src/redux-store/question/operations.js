@@ -10,7 +10,7 @@ export const fetchItem = createAsyncThunk('c', async (idTopic, thunkAPI) => {
   }
 });
 export const addQuestion = createAsyncThunk(
-  'topic/addTopic',
+  '/api/question',
   async (topic, thunkAPI) => {
     try {
       const response = await axios.post(`/api/question/`, topic);

@@ -28,6 +28,7 @@ const QuestionList = () => {
             <Spinner />
           </div>
         ) : (
+          item &&
           item.map(e => {
             return (
               <ItemList
