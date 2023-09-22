@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const questionApi = createApi({
   reducerPath: 'questionsApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: '/',
+    baseUrl: 'https://genedevs-backend-test.onrender.com',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
       if (token) {

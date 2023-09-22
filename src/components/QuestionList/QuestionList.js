@@ -1,35 +1,19 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import ItemList from './ItemList';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  fetchQuestionItem,
-  deleteQuestion,
-} from 'redux-store/question/operations';
 import {
   useGetQuestionQuery,
   useDeleteQuestionMutation,
 } from 'redux-store/question/questionApi';
 import Spinner from 'components/Spiner/Spiner';
 
-import { selectItem, selectisLoading } from 'redux-store/question/selectors';
-
 import style from './style.module.css';
 
 const QuestionList = () => {
   const { idTopic } = useParams();
-  const item = [];
+
   const { data, isLoading } = useGetQuestionQuery(idTopic);
   const [deleteContact] = useDeleteQuestionMutation();
-  // const isLoading = useSelector(selectisLoading);
-  const dispatch = useDispatch();
-
-  console.log(data);
-
-  // useEffect(() => {
-  //   dispatch(fetchQuestionItem(idTopic));
-  // }, [dispatch, idTopic]);
 
   return (
     <div>
@@ -39,8 +23,8 @@ const QuestionList = () => {
             <Spinner />
           </div>
         ) : (
-          item &&
-          item.map(e => {
+          data &&
+          data.map(e => {
             return (
               <ItemList
                 key={e._id}
@@ -48,7 +32,7 @@ const QuestionList = () => {
                 question={e.question}
                 answearList={e.answearList}
                 deleteTopic={() => {
-                  dispatch(deleteQuestion(e._id));
+                   deleteContact(e._id);
                 }}
               />
             );
