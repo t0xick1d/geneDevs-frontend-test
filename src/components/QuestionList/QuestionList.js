@@ -3,7 +3,14 @@ import { useParams } from 'react-router-dom';
 import ItemList from './ItemList';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchItem, deleteQuestion } from 'redux-store/question/operations';
+import {
+  fetchQuestionItem,
+  deleteQuestion,
+} from 'redux-store/question/operations';
+import {
+  useGetQuestionQuery,
+  useDeleteQuestionMutation,
+} from 'redux-store/question/questionApi';
 import Spinner from 'components/Spiner/Spiner';
 
 import { selectItem, selectisLoading } from 'redux-store/question/selectors';
@@ -12,13 +19,17 @@ import style from './style.module.css';
 
 const QuestionList = () => {
   const { idTopic } = useParams();
-  const item = useSelector(selectItem);
-  const isLoading = useSelector(selectisLoading);
+  const item = [];
+  const { data, isLoading } = useGetQuestionQuery(idTopic);
+  const [deleteContact] = useDeleteQuestionMutation();
+  // const isLoading = useSelector(selectisLoading);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchItem(idTopic));
-  }, [dispatch, idTopic]);
+  console.log(data);
+
+  // useEffect(() => {
+  //   dispatch(fetchQuestionItem(idTopic));
+  // }, [dispatch, idTopic]);
 
   return (
     <div>

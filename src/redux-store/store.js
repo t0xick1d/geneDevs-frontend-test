@@ -14,6 +14,9 @@ import { authReducer } from './auth/authSlice';
 import { topicSlice } from './topic/topicSlice';
 import { questionSlice } from './question/questionSlice';
 
+import { setupListeners } from '@reduxjs/toolkit/query';
+import { questionApi } from './question/questionApi';
+
 const authPersistConfig = {
   key: 'auth',
   storage,
@@ -24,14 +27,19 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     topic: topicSlice.reducer,
-    question: questionSlice.reducer,
+    [questionApi.reducerPath]: questionApi.reducer,
+    // question: questionSlice.reducer,
   },
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
+  middleware: getDefaultMiddleware => [
+    ...getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
+    questionApi.middleware,
+  ],
 });
+
+setupListeners(store.dispatch);
 
 export const persistor = persistStore(store);

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export const fetchItem = createAsyncThunk('c', async (idTopic, thunkAPI) => {
+export const fetchQuestionItem = createAsyncThunk('c', async (idTopic, thunkAPI) => {
   try {
     const response = await axios.get(`/api/question/${idTopic}`);
     return response.data;

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchItem, addQuestion, deleteQuestion } from './operations';
+import { fetchQuestionItem, addQuestion, deleteQuestion } from './operations';
 
 const initialState = {
   items: [],
@@ -30,10 +30,10 @@ export const questionSlice = createSlice({
   },
   extraReducers: {
     [addQuestion.pending]: handlePending,
-    [fetchItem.pending]: handlePending,
+    [fetchQuestionItem.pending]: handlePending,
     [deleteQuestion.pending]: handlePending,
 
-    [fetchItem.fulfilled]: handleFulfilled,
+    [fetchQuestionItem.fulfilled]: handleFulfilled,
     [addQuestion.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
@@ -45,7 +45,7 @@ export const questionSlice = createSlice({
     },
 
     [addQuestion.rejected]: handleRejected,
-    [fetchItem.rejected]: handleRejected,
+    [fetchQuestionItem.rejected]: handleRejected,
     [deleteQuestion.rejected]: handleRejected,
   },
 });
