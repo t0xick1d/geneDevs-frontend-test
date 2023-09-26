@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addTopic } from 'redux-store/topic/operations';
-import { selectItem } from 'redux-store/topic/selectors';
 import TopicList from '../../components/TopicList/TopicList';
+import {
+  useAddTopicMutation,
+  useGetTopicQuery,
+} from 'redux-store/topic/topicApi';
 
 import style from './style.module.css';
 
@@ -10,22 +11,22 @@ const TopicPage = () => {
   const [addTaskSwitch, setAddTaskSwitch] = useState(true);
   const [name, setName] = useState('');
 
-  const item = useSelector(selectItem);
-  const dispatch = useDispatch();
+  const { data } = useGetTopicQuery();
+  const [addTopic] = useAddTopicMutation();
 
   const onSubmitForm = e => {
     e.preventDefault();
 
     const formTopic = e.currentTarget.topic.value;
 
-    if (item.filter(e => e.name === formTopic).length !== 0) {
-      alert(`${formTopic}is already in contacts.`);
+    if (data.filter(e => e.topic === formTopic).length !== 0) {
+      alert(`${formTopic} is already in topic.`);
       return;
     }
     const topicInfo = {
       topic: formTopic,
     };
-    dispatch(addTopic(topicInfo));
+    addTopic(topicInfo);
     reset();
   };
   const reset = () => {

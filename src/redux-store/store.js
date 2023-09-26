@@ -11,11 +11,10 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/authSlice';
-import { topicSlice } from './topic/topicSlice';
-import { questionSlice } from './question/questionSlice';
+import { questionApi } from './question/questionApi';
+import { topicApi } from './topic/topicApi';
 
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { questionApi } from './question/questionApi';
 
 const authPersistConfig = {
   key: 'auth',
@@ -26,9 +25,8 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    topic: topicSlice.reducer,
+    [topicApi.reducerPath]: topicApi.reducer,
     [questionApi.reducerPath]: questionApi.reducer,
-    // question: questionSlice.reducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
@@ -37,6 +35,7 @@ export const store = configureStore({
       },
     }),
     questionApi.middleware,
+    topicApi.middleware,
   ],
 });
 

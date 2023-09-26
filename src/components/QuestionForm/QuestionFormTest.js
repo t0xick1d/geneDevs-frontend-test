@@ -1,14 +1,13 @@
-import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { useAddQuestionMutation } from 'redux-store/question/questionApi';
 import { Formik, Field, Form, ErrorMessage, FieldArray } from 'formik';
-import { addQuestion } from 'redux-store/question/operations';
 import * as Yup from 'yup';
 
 import style from './style.module.css';
 
 const QuestionForm = () => {
-  const dispatch = useDispatch();
   const { idTopic } = useParams();
+  const [addQuestion] = useAddQuestionMutation();
 
   const initialValues = {
     question: '',
@@ -34,15 +33,17 @@ const QuestionForm = () => {
       .required('Required'),
   });
 
+  const onSubmitAddQuestionorm = (values, actions) => {
+    console.log(values);
+    addQuestion(values);
+    actions.resetForm();
+  };
+
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={(values, actions) => {
-        console.log(values);
-        dispatch(addQuestion(values));
-        actions.resetForm();
-      }}
+      onSubmit={onSubmitAddQuestionorm}
     >
       {({ values }) => (
         <Form>

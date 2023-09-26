@@ -1,23 +1,16 @@
 import React from 'react';
 import ItemList from './ItemList';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchItem, deleteTopic } from 'redux-store/topic/operations';
 import Spinner from 'components/Spiner/Spiner';
-
-import { selectItem, selectisLoading } from 'redux-store/topic/selectors';
+import {
+  useGetTopicQuery,
+  useDeleteTopicMutation,
+} from 'redux-store/topic/topicApi';
 
 import style from './style.module.css';
 
 export default function TopicList() {
-  const item = useSelector(selectItem);
-  const isLoading = useSelector(selectisLoading);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchItem());
-  }, [dispatch]);
+  const [deleteTopic] = useDeleteTopicMutation();
+  const { data, isLoading } = useGetTopicQuery();
 
   return (
     <>
@@ -28,14 +21,14 @@ export default function TopicList() {
             <Spinner />
           </div>
         ) : (
-          item.map(e => {
+          data.map(e => {
             return (
               <ItemList
                 key={e._id}
                 id={e._id}
                 topic={e.topic}
                 deleteTopic={() => {
-                  dispatch(deleteTopic(e._id));
+                  deleteTopic(e._id);
                 }}
               />
             );
