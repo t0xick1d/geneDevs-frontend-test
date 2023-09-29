@@ -7,6 +7,12 @@
   background-color: rgba(246, 246, 246, 0);
   color: rgb(84, 167, 255);
 }
+.container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+}
 .list{ 
   padding: 0px;
 }

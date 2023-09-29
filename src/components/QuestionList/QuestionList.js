@@ -13,7 +13,7 @@ const QuestionList = () => {
   const { idTopic } = useParams();
 
   const { data, isLoading } = useGetQuestionQuery(idTopic);
-  const [deleteContact] = useDeleteQuestionMutation();
+  const [deleteQuestion] = useDeleteQuestionMutation();
 
   return (
     <div>
@@ -31,8 +31,8 @@ const QuestionList = () => {
                 id={e._id}
                 question={e.question}
                 answearList={e.answearList}
-                deleteTopic={() => {
-                   deleteContact(e._id);
+                deleteQuestion={() => {
+                  deleteQuestion(e._id);
                 }}
               />
             );

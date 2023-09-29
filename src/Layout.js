@@ -3,9 +3,11 @@ import Navigation from './components/Navigation/Navigation';
 import { Suspense } from 'react';
 import Spiner from './components/Spiner/Spiner';
 
+import styled from './App.module.css';
+
 const Layout = () => {
   return (
-    <div>
+    <div className={styled.App__container}>
       <Navigation />
       <main>
         <Suspense fallback={<Spiner />}>

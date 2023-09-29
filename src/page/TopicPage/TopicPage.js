@@ -6,6 +6,12 @@ import {
 } from 'redux-store/topic/topicApi';
 
 import style from './style.module.css';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import { Container } from '@mui/material';
 
 const TopicPage = () => {
   const [addTaskSwitch, setAddTaskSwitch] = useState(true);
@@ -39,30 +45,52 @@ const TopicPage = () => {
   return (
     <div>
       {addTaskSwitch ? (
-        <button onClick={swithAddFunc} className={style.button__delete}>
+        <Button onClick={swithAddFunc} variant="outlined">
           Add test
-        </button>
+        </Button>
       ) : (
-        <div>
-          <form onSubmit={onSubmitForm} className={style.container}>
-            <input
-              type="text"
-              name="topic"
-              required
-              value={name}
-              onChange={e => {
-                setName(e.target.value);
-              }}
-              className={style.input__form}
-            />
-            <button type="submit" className={style.button__delete}>
-              Add test
-            </button>
-          </form>
-          <button onClick={swithAddFunc} className={style.button__delete}>
-            Cancel
-          </button>
-        </div>
+        <Container
+          fixed
+          sx={{
+            width: 300,
+            alignItems: 'center',
+          }}
+        >
+          <Stack
+            spacing={{ xs: 1, sm: 1 }}
+            direction="column"
+            useFlexGap
+            flexWrap="wrap"
+          >
+            <form onSubmit={onSubmitForm} className={style.container}>
+              {/* <Item> */}
+              <TextField
+                id="outlined-basic"
+                label="Add topic"
+                variant="outlined"
+                type="text"
+                name="topic"
+                className={style.input__form}
+                required
+                value={name}
+                onChange={e => {
+                  setName(e.target.value);
+                }}
+              />
+              <Button
+                type="submit"
+                variant="outlined"
+                className={style.button__delete}
+              >
+                Add test
+              </Button>
+              {/* </Item> */}
+            </form>
+            <Button variant="contained" onClick={swithAddFunc}>
+              Cancel
+            </Button>
+          </Stack>
+        </Container>
       )}
 
       <TopicList />

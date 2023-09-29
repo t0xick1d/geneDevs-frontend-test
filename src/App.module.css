@@ -1,11 +1,19 @@
 .App__container{
-  height: 150vh;
-  min-width: 762px;
-  display: flex;
-  justify-content: center;
-  font-size: 30;
-  color: #010101;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
   background-color: rgb(232, 232, 232);
+  color: #010101;
+
+  @media screen and (min-width: 375px) {
+    max-width: 375px;
+  }
+  @media screen and (min-width: 768px) {
+    max-width: 768px;
+  }
+  @media screen and (min-width: 1440px) {
+    max-width: 1440px;
+  }
 }
 ul{
   list-style: none;

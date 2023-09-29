@@ -13,7 +13,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <PersistGate loading={<Spinner />} persistor={persistor}>
         <BrowserRouter basename="/">
-          <App />
+          <App
+            style={{
+              width: '100%',
+              alignItems: 'center',
+              backgrounColor: 'rgb(232, 232, 232)',
+              color: '#010101',
+            }}
+          />
         </BrowserRouter>
       </PersistGate>
     </Provider>

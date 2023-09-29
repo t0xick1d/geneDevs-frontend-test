@@ -1,6 +1,9 @@
 import style from './style.module.css';
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 
-function ItemList({ id, question, answearList = [], deleteTopic }) {
+function ItemList({ id, question, answearList = [], deleteQuestion }) {
   return (
     <li key={id} className={style.item}>
       <div>{question}?</div>
@@ -12,15 +15,16 @@ function ItemList({ id, question, answearList = [], deleteTopic }) {
           </div>
         );
       })}
-      <button
-        className={style.button__delete}
+      <Tooltip
+        title="Delete"
         onClick={() => {
-          deleteTopic(id);
+          deleteQuestion(id);
         }}
       >
-        {' '}
-        Delete{' '}
-      </button>
+        <IconButton>
+          <DeleteIcon />
+        </IconButton>
+      </Tooltip>
     </li>
   );
 }

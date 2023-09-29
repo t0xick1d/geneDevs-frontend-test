@@ -8,8 +8,6 @@ import { RestrictedRoute } from './RestrictedRoute';
 
 import Spiner from './components/Spiner/Spiner';
 
-import style from './App.module.css';
-
 const TopicPage = lazy(() => import('./page/TopicPage/TopicPage'));
 const LoginPage = lazy(() => import('./page/Login/Login'));
 const RegisterPage = lazy(() => import('./page/Register/RegisterPage'));
@@ -26,7 +24,12 @@ export const App = () => {
   return isRefreshing ? (
     <Spiner />
   ) : (
-    <div className={style.App__container}>
+    <div
+      style={{
+        backgroundColor: 'rgb(232, 232, 232)',
+        color: '#010101',
+      }}
+    >
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />} />

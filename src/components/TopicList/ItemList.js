@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom';
 import style from './style.module.css';
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 
 function ItemList({ id, topic, deleteTopic }) {
   return (
@@ -7,15 +10,16 @@ function ItemList({ id, topic, deleteTopic }) {
       <Link to={`question/${id}`}>
         <div>{topic}</div>
       </Link>
-      <button
-        className={style.button__delete}
+      <Tooltip
+        title="Delete"
         onClick={() => {
           deleteTopic(id);
         }}
       >
-        {' '}
-        Delete{' '}
-      </button>
+        <IconButton>
+          <DeleteIcon />
+        </IconButton>
+      </Tooltip>
     </li>
   );
 }
