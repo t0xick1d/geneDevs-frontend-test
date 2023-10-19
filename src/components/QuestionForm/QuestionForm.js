@@ -89,7 +89,7 @@ const QuestionForm = () => {
                         </label>
                         <Field
                           as={TextField}
-                          label="Add question"
+                          label="Add answear"
                           name={`answearList.${index}.answer`}
                           placeholder="Writen answear"
                           type="text"

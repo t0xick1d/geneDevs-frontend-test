@@ -7,7 +7,7 @@ import { Button } from '@mui/material';
 
 import style from './style.module.css';
 
-export default function QuestionPage() {
+const QuestionPage = () => {
   const [addTaskSwitch, setAddTaskSwitch] = useState(true);
 
   return (
@@ -49,4 +49,6 @@ export default function QuestionPage() {
       <QuestionList />
     </div>
   );
-}
+};
+
+export default QuestionPage;

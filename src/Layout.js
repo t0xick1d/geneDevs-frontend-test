@@ -9,7 +9,7 @@ const Layout = () => {
   return (
     <div className={styled.App__container}>
       <Navigation />
-      <main>
+      <main style={{ padding: 20 }}>
         <Suspense fallback={<Spiner />}>
           <Outlet />
         </Suspense>
@@ -17,5 +17,4 @@ const Layout = () => {
     </div>
   );
 };
-
 export default Layout;
